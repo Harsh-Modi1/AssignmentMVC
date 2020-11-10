@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="moviedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="moviebookings" Relationship="Self.FK__moviebookin__cid__4222D4EF" FromRole="customer" ToRole="moviebooking" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Mid" />
+    </Key>
+    <Property Name="Mid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MovieName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfRelease" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Screens" Relationship="Self.FK__Screen__Mid__3C69FB99" FromRole="Movie" ToRole="Screen" />
+  </EntityType>
+  <EntityType Name="moviebooking">
+    <Key>
+      <PropertyRef Name="bookingid" />
+    </Key>
+    <Property Name="bookingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sid" Type="Int32" />
+    <Property Name="cid" Type="Int32" />
+    <Property Name="noofseats" Type="Int32" />
+    <Property Name="totalamount" Type="Int32" />
+    <NavigationProperty Name="customer" Relationship="Self.FK__moviebookin__cid__4222D4EF" FromRole="moviebooking" ToRole="customer" />
+    <NavigationProperty Name="Screen" Relationship="Self.FK__moviebookin__sid__412EB0B6" FromRole="moviebooking" ToRole="Screen" />
+  </EntityType>
+  <EntityType Name="Screen">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tid" Type="Int32" />
+    <Property Name="Mid" Type="Int32" />
+    <Property Name="NoOfSeats" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <NavigationProperty Name="Movie" Relationship="Self.FK__Screen__Mid__3C69FB99" FromRole="Screen" ToRole="Movie" />
+    <NavigationProperty Name="moviebookings" Relationship="Self.FK__moviebookin__sid__412EB0B6" FromRole="Screen" ToRole="moviebooking" />
+    <NavigationProperty Name="theater" Relationship="Self.FK__Screen__tid__3B75D760" FromRole="Screen" ToRole="theater" />
+  </EntityType>
+  <EntityType Name="theater">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Screens" Relationship="Self.FK__Screen__tid__3B75D760" FromRole="theater" ToRole="Screen" />
+  </EntityType>
+  <Association Name="FK__moviebookin__cid__4222D4EF">
+    <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+    <End Role="moviebooking" Type="Self.moviebooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="moviebooking">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Screen__Mid__3C69FB99">
+    <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+    <End Role="Screen" Type="Self.Screen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="Mid" />
+      </Principal>
+      <Dependent Role="Screen">
+        <PropertyRef Name="Mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__moviebookin__sid__412EB0B6">
+    <End Role="Screen" Type="Self.Screen" Multiplicity="0..1" />
+    <End Role="moviebooking" Type="Self.moviebooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Screen">
+        <PropertyRef Name="sid" />
+      </Principal>
+      <Dependent Role="moviebooking">
+        <PropertyRef Name="sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Screen__tid__3B75D760">
+    <End Role="theater" Type="Self.theater" Multiplicity="0..1" />
+    <End Role="Screen" Type="Self.Screen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="theater">
+        <PropertyRef Name="tid" />
+      </Principal>
+      <Dependent Role="Screen">
+        <PropertyRef Name="tid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="moviedbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="Movies" EntityType="Self.Movie" />
+    <EntitySet Name="moviebookings" EntityType="Self.moviebooking" />
+    <EntitySet Name="Screens" EntityType="Self.Screen" />
+    <EntitySet Name="theaters" EntityType="Self.theater" />
+    <AssociationSet Name="FK__moviebookin__cid__4222D4EF" Association="Self.FK__moviebookin__cid__4222D4EF">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="moviebooking" EntitySet="moviebookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Screen__Mid__3C69FB99" Association="Self.FK__Screen__Mid__3C69FB99">
+      <End Role="Movie" EntitySet="Movies" />
+      <End Role="Screen" EntitySet="Screens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__moviebookin__sid__412EB0B6" Association="Self.FK__moviebookin__sid__412EB0B6">
+      <End Role="Screen" EntitySet="Screens" />
+      <End Role="moviebooking" EntitySet="moviebookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Screen__tid__3B75D760" Association="Self.FK__Screen__tid__3B75D760">
+      <End Role="theater" EntitySet="theaters" />
+      <End Role="Screen" EntitySet="Screens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

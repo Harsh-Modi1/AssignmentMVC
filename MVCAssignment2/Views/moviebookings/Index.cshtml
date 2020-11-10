@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MVCAssignment2.Models.moviebooking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.noofseats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalamount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer.cname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Screen.sid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.noofseats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalamount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.cname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Screen.sid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.bookingid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bookingid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bookingid })
+        </td>
+    </tr>
+}
+
+</table>

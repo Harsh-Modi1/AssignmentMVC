@@ -1,0 +1,50 @@
+﻿@model MVCAssignment2.Models.moviebooking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>moviebooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.noofseats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noofseats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalamount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.cname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.cname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Screen.sid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Screen.sid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bookingid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

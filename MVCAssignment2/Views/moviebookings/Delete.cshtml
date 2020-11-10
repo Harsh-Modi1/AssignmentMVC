@@ -1,0 +1,56 @@
+﻿@model MVCAssignment2.Models.moviebooking
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>moviebooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.noofseats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noofseats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalamount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.cname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.cname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Screen.sid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Screen.sid)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="moviedbModelStoreContainer" CdmEntityContainer="moviedbEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="moviedbModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="moviedbModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="Mid" ColumnName="Mid" />
+          <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+          <ScalarProperty Name="DateOfRelease" ColumnName="DateOfRelease" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="moviebookings">
+      <EntityTypeMapping TypeName="moviedbModel.moviebooking">
+        <MappingFragment StoreEntitySet="moviebooking">
+          <ScalarProperty Name="bookingid" ColumnName="bookingid" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="noofseats" ColumnName="noofseats" />
+          <ScalarProperty Name="totalamount" ColumnName="totalamount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Screens">
+      <EntityTypeMapping TypeName="moviedbModel.Screen">
+        <MappingFragment StoreEntitySet="Screen">
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="tid" ColumnName="tid" />
+          <ScalarProperty Name="Mid" ColumnName="Mid" />
+          <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="theaters">
+      <EntityTypeMapping TypeName="moviedbModel.theater">
+        <MappingFragment StoreEntitySet="theater">
+          <ScalarProperty Name="tid" ColumnName="tid" />
+          <ScalarProperty Name="tname" ColumnName="tname" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
